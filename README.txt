@@ -1,45 +1,55 @@
-Do at least ONE of the following tasks: refactor is mandatory. Write tests is optional, will be good bonus to see it. 
-Please do not invest more than 2-4 hours on this.
-Upload your results to a Github repo, for easier sharing and reviewing.
-
-Thank you and good luck!
-
+# Assessment
 
 
 Code to refactor
 =================
 1) app/Http/Controllers/BookingController.php
+
+* The provided index() had a nested condition. I channged with ternary operation.
+
+* In the distanceFeed() I combined update queries for Distance and Job model for improve efficiency.
+
+* In some methods like store(),update(),acceptJob() etc.. I directly passed the request data for improve request handling.
+
+* Renamed variables for more clarity and readability.
+
+* I removed unused variables ($adminSenderEmail, $session, $affectedRows, etc.) 
+
 2) app/Repository/BookingRepository.php
 
-Code to write tests (optional)
-=====================
-3) App/Helpers/TeHelper.php method willExpireAt
-4) App/Repository/UserRepository.php, method createOrUpdate
+* Moved the logger initialization to a separate method for better readability and maintainability.
 
+* getUsersJobs() - Replaced array() with [] ,if ($jobs) to if (!empty($jobs)),== with === for strict comparison.
 
-----------------------------
+* store() -  camelCase variable naming convention for $immediateTime and $consumerType.
+* Removed duplicate code for field validation.
+* Simplified setting default values for customer_phone_type and customer_physical_type.
+* Removed unnecessary conversion of job_for values.
+* Added comments for better code understanding.
+* Improved readability and code structure for better maintainability.
 
-What I expect in your repo:
+* storeJobEmail() -  camelCase variable naming convention for $userType and $jobId.
+* Used the null coalescing operator (??) for setting default values for $job->reference.
+* Simplified the logic for determining email recipient and name.
+* Simplified the logic for determining job address, instructions, and town.
+* Improved variable naming and code readability.
 
-X. A readme with:   Your thoughts about the code. What makes it amazing code. Or what makes it ok code. Or what makes it terrible code. How would you have done it. Thoughts on formatting, structure, logic.. The more details that you can provide about the code (what's terrible about it or/and what is good about it) the easier for us to assess your coding style, mentality etc
+* jobToData() -Used camelCase variable naming convention for $data.
+* Used the syntax [] instead of array() for creating arrays.
+* Simplified the extraction of the due date and time using explode.
+* Used switch statement for determining job_for values based on certified status.
 
-And 
+* jobEnd()- Used camelCase variable naming convention for $postData.
+* Utilized PHP's date interval format %h:%i:%s to get the session time interval.
+* Simplified the logic for determining the email recipient for the customer.
+* Combined the logic for sending emails to the customer and the translator.
 
-Y.  Refactor it if you feel it needs refactoring. The more love you put into it. The easier for us to asses your thoughts, code principles etc
-
-
-IMPORTANT: Make two commits. First commit with original code. Second with your refactor so we can easily trace changes. 
-
-
-NB: you do not need to set up the code on local and make the web app run. It will not run as its not a complete web app. This is purely to assess you thoughts about code, formatting, logic etc
-
-
-===== So expected output is a GitHub link with either =====
-
-1. Readme described above (point X above) + refactored code 
-OR
-2. Readme described above (point X above) + refactored core + a unit test of the code that we have sent
-
-Thank you!
-
-
+* Merged the ignoreExpiring and ignoreExpired methods into a single updateJobIgnoreStatus method, as they have similar functionality.
+* Introduced a private method updateThrottleIgnoreStatus to handle ignoring throttle records.
+* Reused the common functionality to update the ignore status of jobs and throttles, reducing code duplication.
+* Added error handling to return an error message if the job or throttle is not found.
+* Improved variable naming for better readability ($jobId, $userId, etc.).
+* Added error handling in case the job is not found.
+* Simplified the logic for updating job status and creating a new job entry.
+* Utilized Carbon for date manipulation.
+* Refactored code to be more concise and readable.
